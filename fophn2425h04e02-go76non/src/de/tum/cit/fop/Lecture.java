@@ -84,37 +84,36 @@ public class Lecture {
                 System.out.println(p.getName() + " hogwartsID:" + p.getHogwartsID() + " already attends/holds the lecture.");
             else
                 apprentices.add((Apprentice) p);
-        }
-        else if (p instanceof WizardAide) {
-            if (wizardAides.contains((WizardAide) p))
+        } else if (p instanceof WizardAide) {
+            if (wizardAides.contains((WizardAide) p)) {
                 System.out.println(p.getName() + " hogwartsID:" + p.getHogwartsID() + " already attends/holds the lecture.");
-            else {
-                wizardAides.add((WizardAide) p);
-                Apprentice apprentice = new Apprentice(p.getFirstName(), p.getLastName(), p.getHogwartsID());
-                if (!apprentices.contains(apprentice))
-                    apprentices.add(apprentice);
+            } else {
+               if (((WizardAide) p).getLecture() == this)
+                   wizardAides.add((WizardAide) p);
+               else {
+                   Apprentice newApprentice = new Apprentice(p.getFirstName(), p.getLastName(), p.getHogwartsID());
+                   apprentices.add(newApprentice);
+               }
             }
-        }
-        else if (p instanceof QuidditchTrainer) {
-            if (quidditchTrainers.contains((QuidditchTrainer) p))
+        } else if (p instanceof QuidditchTrainer) {
+            if (quidditchTrainers.contains((QuidditchTrainer) p)) {
                 System.out.println(p.getName() + " hogwartsID:" + p.getHogwartsID() + " already attends/holds the lecture.");
-            else {
-                quidditchTrainers.add((QuidditchTrainer) p);
-                Apprentice apprentice = new Apprentice(p.getFirstName(), p.getLastName(), p.getHogwartsID());
-                if (!apprentices.contains(apprentice))
-                    apprentices.add(apprentice);
+            } else {
+               if (((QuidditchTrainer) p).getLecture() == this)
+                   quidditchTrainers.add((QuidditchTrainer) p);
+               else {
+                   Apprentice newApprentice = new Apprentice(p.getFirstName(), p.getLastName(), p.getHogwartsID());
+                   apprentices.add(newApprentice);
+               }
             }
-        }
-        else if (p instanceof Professor)
-        {
+        } else if (p instanceof Professor) {
             if (professor == p)
                 System.out.println(p.getName() + " hogwartsID:" + p.getHogwartsID() + " already attends/holds the lecture.");
             else if (professor != null)
                 System.out.println("This lecture already has a professor!");
             else
                 professor = (Professor) p;
-        }
-        else
+        } else
             System.out.println("No such participants allowed in this lecture.");
     }
 
